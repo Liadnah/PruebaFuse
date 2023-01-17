@@ -8,21 +8,29 @@
     
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <!-- Main route -->
-        <route id="generate-order-route">
-			
-            <from id="route-timer" uri="file://Prueba"/>
-            <log id="_log1" loggerRef="rh1" loggingLevel="ERROR" message="Log slf4j::::::::${body}"/>
-        	<setProperty propertyName="titulo"><jsonpath>$.book.title</jsonpath></setProperty> 
-        	<setProperty propertyName="precio"><jsonpath>$.book.price</jsonpath></setProperty> 
+        <route>
+ 			<from uri="file://Prueba"/>
+ 			<choice>
+				 <when>
+				 	<simple>${header.CamelFileName} ends with '.xml'</simple>
+				 	<to uri="file://Prueba//folderXML"/>
+				 	    <log id="este log pinta el body de xml" loggerRef="rh1" loggingLevel="ERROR" message="xml file ::::::::${body}"/>
 
-
-        		<log id="_log1" loggerRef="rh1" loggingLevel="ERROR" message="El titulo del libro es :::::${property.titulo} y el precio es :::::${property.precio}"/>
-        	
-        	<to uri="file:out"></to>
-        
-        
-        
-        </route>
+				 </when>
+				 <when>
+				 	<simple>${header.CamelFileName} ends with '.csv'</simple>
+				 	<to uri="file://Prueba//folderCSV"/>
+				 </when>
+				 <when>
+				 	<simple>${header.CamelFileName} ends with '.csl'</simple>
+				 	<to uri="file://Prueba//folderCSL"/>
+				 </when>
+				 <otherwise>
+				 	<to uri="file://Prueba//folderBAD"/>
+				 	<stop/>
+				 </otherwise>
+ 			</choice>
+		</route>
         
     </camelContext>
 </beans>
