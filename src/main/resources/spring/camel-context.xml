@@ -12,8 +12,9 @@
 			
             <from id="route-timer" uri="file://Prueba"/>
             <log id="_log1" loggerRef="rh1" loggingLevel="ERROR" message="Log slf4j::::::::${body}"/>
-        	<setProperty propertyName="titulo"><xpath resultType="String">//book//title </xpath></setProperty> 
-        	<setProperty propertyName="precio"><xpath resultType="String">//book//price </xpath></setProperty> 
+        	<setProperty propertyName="titulo"><jsonpath>$.book.title</jsonpath></setProperty> 
+        	<setProperty propertyName="precio"><jsonpath>$.book.price</jsonpath></setProperty> 
+
 
         		<log id="_log1" loggerRef="rh1" loggingLevel="ERROR" message="El titulo del libro es :::::${property.titulo} y el precio es :::::${property.precio}"/>
         	
