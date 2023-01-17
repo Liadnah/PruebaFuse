@@ -10,20 +10,12 @@
         <!-- Main route -->
         <route>
  			<from uri="file://Prueba"/>
+ 			<setProperty propertyName="precio"><xpath resultType="String">//book//price </xpath></setProperty>
  			<choice>
 				 <when>
-				 	<simple>${header.CamelFileName} ends with '.xml'</simple>
-				 	<to uri="file://Prueba//folderXML"/>
-				 	    <log id="este log pinta el body de xml" loggerRef="rh1" loggingLevel="ERROR" message="xml file ::::::::${body}"/>
-
-				 </when>
-				 <when>
-				 	<simple>${header.CamelFileName} ends with '.csv'</simple>
-				 	<to uri="file://Prueba//folderCSV"/>
-				 </when>
-				 <when>
-				 	<simple>${header.CamelFileName} ends with '.csl'</simple>
-				 	<to uri="file://Prueba//folderCSL"/>
+				 	<simple>${property.precio} > 20 </simple>
+				 	<to uri="file://out"/>
+<!--				 	    <log id="este log pinta el body de xml" loggerRef="rh1" loggingLevel="ERROR" message="xml file ::::::::${body}"/>-->
 				 </when>
 				 <otherwise>
 				 	<to uri="file://Prueba//folderBAD"/>
