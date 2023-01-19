@@ -6,21 +6,34 @@
         <constructor-arg index="0" value="rh1"/>
     </bean>
     
+    <bean class="io.fabric8.quickstarts.camel.util.Route2" id="ruta2"/>
+    
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <!-- Main route -->
         <route>
- 			<from uri="file://Prueba"/>
- 			<setProperty propertyName="precio"><xpath resultType="String">//book//price </xpath></setProperty>
+ 			<from uri="file://Prueba?noop=true"/>  <!-- ?noop=true es para que no se borre el file -->
+ 			<setProperty propertyName="precio"><xpath resultType="Integer">//book//price </xpath></setProperty>
+ 			 	<log id = "_log1" loggingLevel="ERROR" message="El precio del libro es: ${property.precio}" />
+
+ 			<bean method = "precioCondicional" ref="ruta2"></bean>
+ 				<log id = "_log1" loggingLevel="ERROR" message="El precio modificado es: ${property.precio}" />
+ 			
+ 			
  			<choice>
 				 <when>
-				 	<simple>${property.precio} > 20 </simple>
-				 	<to uri="file://out"/>
-<!--				 	    <log id="este log pinta el body de xml" loggerRef="rh1" loggingLevel="ERROR" message="xml file ::::::::${body}"/>-->
+				 	<simple>${property.precio} </simple>
+<!--				 	<to uri="file://Prueba//Condicional//mayorQue"/>-->
+<!--			 	    <log id="precio" loggingLevel="ERROR" message="precio ::::::::${property.precio}" />-->
 				 </when>
-				 <otherwise>
-				 	<to uri="file://Prueba//folderBAD"/>
-				 	<stop/>
-				 </otherwise>
+<!--				 <when>-->
+<!--				 	<simple>${property.precio} < 2000 </simple>-->
+<!--				 	<to uri="file://Prueba//Condicional//menorQue"/>-->
+<!--				 </when>-->
+<!--				 <when>-->
+<!--				 	<simple>${property.precio} == 1000 </simple>-->
+<!--				 	<to uri="file://Prueba//Condicional//igualQue"/>-->
+<!--				 </when>-->
+				 
  			</choice>
 		</route>
         
