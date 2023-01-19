@@ -25,14 +25,6 @@
 <!--				 	<to uri="file://Prueba//Condicional//mayorQue"/>-->
 <!--			 	    <log id="precio" loggingLevel="ERROR" message="precio ::::::::${property.precio}" />-->
 				 </when>
-<!--				 <when>-->
-<!--				 	<simple>${property.precio} < 2000 </simple>-->
-<!--				 	<to uri="file://Prueba//Condicional//menorQue"/>-->
-<!--				 </when>-->
-<!--				 <when>-->
-<!--				 	<simple>${property.precio} == 1000 </simple>-->
-<!--				 	<to uri="file://Prueba//Condicional//igualQue"/>-->
-<!--				 </when>-->
 				 
  			</choice>
 		</route>

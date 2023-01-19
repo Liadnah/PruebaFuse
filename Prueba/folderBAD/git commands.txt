@@ -1,0 +1,31 @@
+$ history
+    1  git clone https://github.com/camilo038/fusespringboot
+    2  git clone https://github.com/camelinaction/camelinaction2.git
+    3  git init
+    4  git add .
+    5  git commit -m "first commit"
+    6  git init
+    7  git add .
+    8  git commit -m "first commit"
+    9    git config --global user.email "liadnah93@gmail.com"
+   10    git config --global user.name "Ana"
+   11  git branch -M main
+   12  git remote add origin https://github.com/Liadnah/PruebaFuse.git
+   13  git push -u origin main
+   14  git remote add origin https://github.com/Liadnah/PruebaFuse.git
+   15  git push
+   16      git push --set-upstream origin main
+   17  git push
+   18  git remote add origin https://github.com/Liadnah/PruebaFuse.git
+   19  git push
+   20  git status
+   21  git add
+   22  git add logs/logFile.html pom.xml src/main/resources/spring/camel-context.xml
+   23  git status
+   24  git add out/Prueba.json
+   25  commit -m "pruebaJsonPath"
+   26  git commit -m "pruebaJsonPath"
+   27  git push
+   28  git history
+   29  git story
+   30  history
